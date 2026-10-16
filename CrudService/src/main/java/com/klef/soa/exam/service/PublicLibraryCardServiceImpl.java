@@ -1,0 +1,38 @@
+package com.klef.soa.exam.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.klef.soa.exam.entity.PublicLibraryCard;
+import com.klef.soa.exam.repository.PublicLibraryCardRepository;
+
+@Service
+public class PublicLibraryCardServiceImpl implements PublicLibraryCardService 
+{
+	@Autowired
+	private PublicLibraryCardRepository librarycardrepo;
+
+	@Override
+	public PublicLibraryCard addRecord(PublicLibraryCard librarycard) {
+		return librarycardrepo.save(librarycard);
+	}
+
+	@Override
+	public List<PublicLibraryCard> displayAll() {
+		return librarycardrepo.findAll();
+	}
+
+	@Override
+	public String deletebyid(long id) {
+		if(librarycardrepo.existsById(id))
+		{
+			librarycardrepo.deleteById(id);
+			return "User deleted successfully";
+		}
+		return null;
+	}
+	
+
+}

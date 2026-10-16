@@ -1,0 +1,9 @@
+package com.klef.soa.exam.service;
+
+import com.klef.soa.exam.entity.PublicLibraryCard;
+
+public interface PublicLibraryCardService {
+	PublicLibraryCard addRecord(PublicLibraryCard )
+	List<PublicLibraryCard>displayAll();
+	PublicLibraryCard deletebyid(long id);
+}

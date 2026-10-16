@@ -1,0 +1,43 @@
+package com.klef.soa.exam.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.klef.soa.exam.entity.PublicLibraryCard;
+import com.klef.soa.exam.service.PublicLibraryCardService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+public class PublicLibraryCardController 
+{
+	 	@Autowired
+	    private PublicLibraryCardService librarycardservice;
+	 	
+	 	@GetMapping("/")
+		public String home()
+		{
+			return "Public Library Card Service Project";
+		}
+	 	@PostMapping("/add")
+	    public PublicLibraryCard adduser(@RequestBody PublicLibraryCard librarycard) {
+	        return librarycardservice.addRecord(librarycard);
+	    }
+
+	    @GetMapping("/displayall")
+	    public List<PublicLibraryCard> getallusers() {
+	        return librarycardservice.displayAll();
+	    }
+	    @DeleteMapping("/delete/{id}")
+	    public String deleteuserbyid(@PathVariable Long id) {
+	        return librarycardservice.deletebyid(id);
+	    }
+
+
+}
